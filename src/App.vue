@@ -1,6 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Counter />
+  <Counter title="Learning props" v-bind:start="5"/>
+  <!-- v-bind:start or :start is the same. Here we are passing a prop to the Counter component,
+  and we are binding the start property to the value 5. Without binding,
+  the start property would be a string value of "5", insted of a number. -->
 </template>
 
 <script>

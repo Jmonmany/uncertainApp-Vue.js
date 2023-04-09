@@ -1,5 +1,5 @@
 <template>
-  <h2>Counter</h2>
+  <h2>{{getTitle}}</h2>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
@@ -20,10 +20,25 @@
 
 <script>
 export default {
+  props: {
+    title: String,
+    // start: Number,
+    start: {
+      type: Number,
+      default: 1, // default value if start is not passed on father component
+      required: false, // if true, start is required, so we must pass it on father component
+      validator (value) {
+        return value > 4;
+      },
+      // will fire a warning in console if start is not greater than 4,
+      // like a custom validatior check failed,
+      // but it will not stop the app from running
+    },
+  },
   name: "Counter",
   data() {
     return {
-      counter: 10,
+      counter: this.start,
     };
   },
   // Here are a few scenarios where it's better to use methods:
@@ -65,6 +80,9 @@ export default {
       return this.counter * this.counter;
     },
     // better use computed for this, to save the value in the cache memory
+    getTitle() {
+      return this.title || "Counter";
+    },
   },
 };
 </script>
