@@ -2,10 +2,8 @@
   <h2>{{getTitle}}</h2>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
   <!-- notice that using methods functions will be called with () and renders per each call,
   no matter if the value is changed or not -->
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
   <!-- Using computed functions instead will only be called once, and the value will

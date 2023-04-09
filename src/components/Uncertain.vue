@@ -1,15 +1,19 @@
 <template>
-  <img src="" alt="" />
+  <img v-if="image" :src="image" alt="" />
   <div class="bg-dark"></div>
   <div class="uncertain-container">
-    <input type="text" placeholder="Ask me a question">
+    <input
+      type="text"
+      placeholder="Ask me a question"
+      v-model="question"
+      @keyup.enter="getQuestion()"
+    />
     <p>Do not forget to write the question mark (?)</p>
-    <div>
-        <h2>Will I be a millionaire?</h2>
-        <h1>Yes, No ... waiting</h1>
+    <div v-if="isValid">
+      <h2>{{ question }}</h2>
+      <h1>{{ answer }}</h1>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -17,56 +21,76 @@ export default {
   props: {},
   name: "Uncertain",
   data() {
-    return {};
+    return {
+      question: "",
+      answer: null,
+      image: null,
+      isValid: false,
+    };
   },
-  methods: {},
-  computed: {},
+  methods: {
+    async getAnswer() {
+      this.answer = "Waiting for answer...";
+      const response = await fetch("https://yesno.wtf/api");
+      const { answer, image } = await response.json();
+      this.answer = answer;
+      this.image = image;
+    },
+  },
+  watch: {
+    question(value, oldValue) {
+      if (!value.includes("?")) return;
+      this.isValid = true;
+      this.getAnswer();
+    },
+  },
 };
 </script>
 
 <style scoped>
+img,
+.bg-dark {
+  height: 100vh;
+  left: 0px;
+  max-height: 67%;
+  max-width: 100%;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+}
 
-    img, .bg-dark {
-        height: 100vh;
-        left: 0px;
-        max-height: 100%;
-        max-width: 100%;
-        position: fixed;
-        top: 0px;
-        width: 100vw;
-    }
+.bg-dark {
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
-    .bg-dark {
-        background-color: rgba(0, 0, 0, 0.4);
-    }
+.uncertain-container {
+  margin-block-start: 1rem;
+  position: relative;
+  z-index: 99;
+}
 
-    .uncertain-container {
-        position: relative;
-        z-index: 99;
-    }
-    
-    input {
-        width: 250px;
-        padding: 10px 15px;
-        border-radius: 5px;
-        border: none;
-    }
-    input:focus {
-        outline: none;
-    }
+input {
+  width: 250px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+input:focus {
+  outline: none;
+}
 
-    p {
-        color: white;
-        font-size: 20px;
-        margin-top: 0px;
-    }
+p {
+  color: white;
+  font-size: 20px;
+  margin-top: 0px;
+}
 
-    h1, h2 {
-        color: white;
-    }
-    
-    h2 {
-        margin-top: 150px;
-    }
+h1,
+h2 {
+  color: white;
+}
 
+h2 {
+  margin-top: 150px;
+}
 </style>
