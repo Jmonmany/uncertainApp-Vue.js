@@ -30,15 +30,21 @@ export default {
   },
   methods: {
     async getAnswer() {
-      this.answer = "Waiting for answer...";
-      const response = await fetch("https://yesno.wtf/api");
-      const { answer, image } = await response.json();
-      this.answer = answer;
-      this.image = image;
+      try {
+        this.answer = "Waiting for answer...";
+        const response = await fetch("https://yesno.wtf/api");
+        const { answer, image } = await response.json();
+        this.answer = answer;
+        this.image = image;
+      } catch (error) {
+        this.answer = "Fail to fetch";
+        this.img = null;
+      }
     },
   },
   watch: {
     question(value, oldValue) {
+      console.log({ value });
       if (!value.includes("?")) return;
       this.isValid = true;
       this.getAnswer();

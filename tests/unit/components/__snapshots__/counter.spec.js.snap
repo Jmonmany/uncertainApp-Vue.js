@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter component should match with snapshot 1`] = `
+<h2>Counter</h2>
+<p>1 <sup>2</sup> = 1</p>
+<p>1 <sup>2</sup> = 1</p>
+<!-- notice that using methods functions will be called with () and renders per each call,
+  no matter if the value is changed or not -->
+<p>1 <sup>2</sup> = 1</p>
+<p>1 <sup>2</sup> = 1</p>
+<!-- Using computed functions instead will only be called once, and the value will
+  be cached We don't use () in computed functions, because they are not
+  functions, they are properties -->
+<span>1</span>
+<div class="snapshot testing"><button data-testidbtn="increase">+1</button><button>-1</button><!-- using @click instead of v-on:click -->
+</div>
+`;

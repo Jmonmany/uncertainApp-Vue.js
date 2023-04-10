@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Uncertain component should match with snapshot 1`] = `
+<!--v-if-->
+<div class="bg-dark"></div>
+<div class="uncertain-container"><input type="text" placeholder="Ask me a question">
+  <p>Do not forget to write the question mark (?)</p>
+  <!--v-if-->
+</div>
+`;
