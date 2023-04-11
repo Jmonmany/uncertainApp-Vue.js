@@ -1,23 +1,25 @@
 <template>
   <h2>{{ getTitle }}</h2>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
-  <!-- notice that using methods functions will be called with () and renders per each call,
+  <section>
+      <!-- <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p>
+      <p>{{ counter }} <sup>2</sup> = {{ getSquareValue() }}</p> -->
+      <!-- notice that using methods functions will be called with () and renders per each call,
   no matter if the value is changed or not -->
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <!-- Using computed functions instead will only be called once, and the value will
+      <!-- <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p> -->
+      <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
+      <!-- Using computed functions instead will only be called once, and the value will
   be cached We don't use () in computed functions, because they are not
   functions, they are properties -->
-  <span>{{ getSquareCounter }}</span>
-  <div class="snapshot testing">
-    <button v-on:click="Increment()" data-testidBtn='increase'>+1</button>
-    <button @click="Decrement()">-1</button>
-    <!-- using @click instead of v-on:click -->
-  </div>
+    <span>{{ getSquareCounter }}</span>
+    <div class="snapshot testing">
+      <button v-on:click="Increment()" data-testidBtn="increase">+1</button>
+      <button @click="Decrement()">-1</button>
+      <!-- using @click instead of v-on:click -->
+    </div>
+  </section>
 </template>
 
-<script>
+<script scoped>
 export default {
   props: {
     title: String,
@@ -85,6 +87,9 @@ export default {
 </script>
 
 <style>
+h2 {
+  margin: 0;
+}
 button {
   background-color: brown;
   border-radius: 5px;

@@ -58,7 +58,7 @@ img,
 .bg-dark {
   height: 100vh;
   left: 0px;
-  max-height: 67%;
+  max-height: 85%;
   max-width: 100%;
   position: fixed;
   bottom: 0px;
